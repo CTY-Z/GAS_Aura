@@ -4,14 +4,23 @@
 
 #include "CoreMinimal.h"
 #include "Character/CMCharacterBase.h"
+#include "Interaction/Highlight.h"
 #include "CMEnemy.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class AURA_API ACMEnemy : public ACMCharacterBase
+class AURA_API ACMEnemy : public ACMCharacterBase, public IHighlight
 {
 	GENERATED_BODY()
 	
+public:
+	ACMEnemy();
+
+	virtual void HighlightActor() override;
+	virtual void UnHighlightActor() override;
+
+protected:
+	virtual void BeginPlay() override;
 };
