@@ -12,7 +12,7 @@ AAuraPlayerState::AAuraPlayerState()
 	asc->SetIsReplicated(true);
 	asc->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
-	attributeSet = CreateDefaultSubobject<UAttributeSet>("AttributeSet");
+	attributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
 
 	NetUpdateFrequency = 100.f;
 }
