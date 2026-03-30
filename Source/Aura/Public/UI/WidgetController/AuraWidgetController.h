@@ -1,0 +1,33 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
+#include "AuraWidgetController.generated.h"
+
+class UAbilitySystemComponent;
+class UAttributeSet;
+
+/**
+ * 
+ */
+UCLASS()
+class AURA_API UAuraWidgetController : public UObject
+{
+	GENERATED_BODY()
+	
+protected:
+
+	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
+	TObjectPtr<APlayerController> playerCtrl;
+
+	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
+	TObjectPtr<APlayerState> playerState;
+
+	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
+	TObjectPtr<UAbilitySystemComponent> asc;
+
+	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")
+	TObjectPtr<UAttributeSet> attributeSet;
+};
