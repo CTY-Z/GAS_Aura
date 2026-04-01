@@ -10,3 +10,13 @@ void UAuraWidgetController::SetWidgetControllerParams(const FWidgetControllerPar
 	asc = params.asc;
 	attributeSet = params.attributeSet;
 }
+
+void UAuraWidgetController::BroadcastInitialValues()
+{
+
+}
+
+void UAuraWidgetController::BindCallbackToDependencies()
+{
+
+}
