@@ -6,8 +6,27 @@
 #include "UObject/NoExportTypes.h"
 #include "AuraWidgetController.generated.h"
 
-class UAbilitySystemComponent;
 class UAttributeSet;
+class UAbilitySystemComponent;
+
+USTRUCT(BlueprintType)
+struct FWidgetControllerParams
+{
+	GENERATED_BODY()
+
+	FWidgetControllerParams() {}
+	FWidgetControllerParams(APlayerController* pc, APlayerState* ps, UAbilitySystemComponent* asc, UAttributeSet* as)
+		:playerCtrl(pc), playerState(ps), asc(asc), attributeSet(as) { }
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlayerController> playerCtrl = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<APlayerState> playerState = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UAbilitySystemComponent> asc = nullptr;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UAttributeSet> attributeSet = nullptr;
+};
 
 /**
  * 
@@ -17,6 +36,10 @@ class AURA_API UAuraWidgetController : public UObject
 {
 	GENERATED_BODY()
 	
+public:
+	UFUNCTION(BlueprintCallable)
+	void SetWidgetControllerParams(const FWidgetControllerParams& params);
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "WidgetController")

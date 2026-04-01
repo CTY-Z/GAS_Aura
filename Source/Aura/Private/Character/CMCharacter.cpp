@@ -6,6 +6,8 @@
 
 #include "AbilitySystemComponent.h"
 #include "Player/AuraPlayerState.h"
+#include "Player/AuraPlayerController.h"
+#include "UI/HUD/AuraHUD.h"
 
 ACMCharacter::ACMCharacter()
 {
@@ -44,4 +46,11 @@ void ACMCharacter::InitAbilityActorInfo()
 	auraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(auraPlayerState, this);
 	asc = auraPlayerState->GetAbilitySystemComponent();
 	attributeSet = auraPlayerState->GetAttributeSet();
+
+	if (auto ctrl = Cast<AAuraPlayerController>(GetController()))
+	{
+		if (auto auraHUD = Cast<AAuraHUD>(ctrl->GetHUD()))
+			auraHUD->InitOverlay(ctrl, auraPlayerState, asc, attributeSet);
+	}
+
 }

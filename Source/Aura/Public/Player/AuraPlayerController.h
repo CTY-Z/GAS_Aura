@@ -36,8 +36,8 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> m_action_move;
 
-	IHighlight* lastActor;
-	IHighlight* curActor;
+	TObjectPtr<IHighlight> lastActor;
+	TObjectPtr<IHighlight> curActor;
 
 	void Move(const FInputActionValue& inputActionValue);
 
