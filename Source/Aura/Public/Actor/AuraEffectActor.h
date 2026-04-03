@@ -18,12 +18,15 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
+	
 	UFUNCTION(BlueprintCallable)
 	void ApplyEffectToTarget(AActor* targetActor, TSubclassOf<UGameplayEffect> gameplayEffectClass);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
 	TSubclassOf<UGameplayEffect> instantGameplayEffectClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Applied Effects")
+	TSubclassOf<UGameplayEffect> durationGameplayEffectClass;
 
 private:
 
