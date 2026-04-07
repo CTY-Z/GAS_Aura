@@ -21,7 +21,13 @@ void ACMEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 
+	InitAbilityActorInfo();
+}
+
+void ACMEnemy::InitAbilityActorInfo()
+{
 	asc->InitAbilityActorInfo(this, this);
+	Cast<UAuraAbilitySystemComponent>(asc)->AbilityActorInfoSet();
 }
 
 void ACMEnemy::HighlightActor()

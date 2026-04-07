@@ -8,6 +8,7 @@
 #include "Player/AuraPlayerState.h"
 #include "Player/AuraPlayerController.h"
 #include "UI/HUD/AuraHUD.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 ACMCharacter::ACMCharacter()
 {
@@ -44,6 +45,8 @@ void ACMCharacter::InitAbilityActorInfo()
 	AAuraPlayerState* auraPlayerState = GetPlayerState<AAuraPlayerState>();
 	check(auraPlayerState);
 	auraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(auraPlayerState, this);
+	Cast<UAuraAbilitySystemComponent>(auraPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
+
 	asc = auraPlayerState->GetAbilitySystemComponent();
 	attributeSet = auraPlayerState->GetAttributeSet();
 

@@ -23,3 +23,8 @@ void ACMCharacterBase::BeginPlay()
 	
 }
 
+void ACMCharacterBase::InitAbilityActorInfo()
+{
+
+}
+

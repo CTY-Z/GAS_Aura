@@ -21,6 +21,7 @@ public:
 	UAttributeSet* GetAttributeSet() const { return attributeSet; }
 
 protected:
+	virtual void InitAbilityActorInfo();
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
