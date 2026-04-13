@@ -9,6 +9,7 @@
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UGameplayEffect;
 
 UCLASS(Abstract)
 class AURA_API ACMCharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -31,4 +32,9 @@ protected:
 	TObjectPtr<UAbilitySystemComponent> asc;
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> attributeSet;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
+	TSubclassOf<UGameplayEffect> defaultPrimaryAttributes;
+
+	void InitializePrimaryAttributes() const;
 };

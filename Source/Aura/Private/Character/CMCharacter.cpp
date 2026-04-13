@@ -56,4 +56,5 @@ void ACMCharacter::InitAbilityActorInfo()
 			auraHUD->InitOverlay(ctrl, auraPlayerState, asc, attributeSet);
 	}
 
+	InitializePrimaryAttributes();
 }

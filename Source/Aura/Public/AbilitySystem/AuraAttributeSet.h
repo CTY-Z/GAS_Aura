@@ -60,6 +60,8 @@ public:
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
+#pragma region Vital
+
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Health, Category = "Vital Attributes ")
 	FGameplayAttributeData health;
 	UFUNCTION()
@@ -83,6 +85,40 @@ public:
 	UFUNCTION()
 	void OnRep_MaxMana(const FGameplayAttributeData& oldMaxHealth) const;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, maxMana);
+
+#pragma endregion
+
+#pragma region Primary
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Strength, Category = "Primary Attributes ")
+	FGameplayAttributeData strength;
+	UFUNCTION()
+	void OnRep_Strength(const FGameplayAttributeData& oldStrength) const;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, strength);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Intelligence, Category = "Primary Attributes ")
+	FGameplayAttributeData intelligence;
+	UFUNCTION()
+	void OnRep_Intelligence(const FGameplayAttributeData& oldIntelligence) const;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, intelligence);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Resilience, Category = "Primary Attributes ")
+	FGameplayAttributeData resilience;
+	UFUNCTION()
+	void OnRep_Resilience(const FGameplayAttributeData& oldResilience) const;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, resilience);
+
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Vigor, Category = "Primary Attributes ")
+	FGameplayAttributeData vigor;
+	UFUNCTION()
+	void OnRep_Vigor(const FGameplayAttributeData& oldVigor) const;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, vigor);
+
+#pragma endregion
+
+
+
+
 
 private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& data, FEffectProperties& props) const;
