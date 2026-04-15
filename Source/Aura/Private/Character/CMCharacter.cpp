@@ -40,6 +40,14 @@ void ACMCharacter::OnRep_PlayerState()
 	InitAbilityActorInfo();
 }
 
+int32 ACMCharacter::GetPlayerLevel()
+{
+	const AAuraPlayerState* auraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(auraPlayerState);
+
+	return auraPlayerState->GetPlayerLevel();
+}
+
 void ACMCharacter::InitAbilityActorInfo()
 {
 	AAuraPlayerState* auraPlayerState = GetPlayerState<AAuraPlayerState>();
@@ -56,5 +64,5 @@ void ACMCharacter::InitAbilityActorInfo()
 			auraHUD->InitOverlay(ctrl, auraPlayerState, asc, attributeSet);
 	}
 
-	InitializePrimaryAttributes();
+	InitializeDefaultAttributes();
 }

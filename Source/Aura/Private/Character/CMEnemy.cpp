@@ -45,4 +45,9 @@ void ACMEnemy::UnHighlightActor()
 	weapon->SetRenderCustomDepth(false);
 }
 
+int32 ACMEnemy::GetPlayerLevel()
+{
+	return level;
+}
+
 
