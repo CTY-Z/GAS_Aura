@@ -34,9 +34,10 @@ void ACMCharacterBase::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> gameplayEf
 	check(IsValid(GetAbilitySystemComponent()));
 	check(gameplayEffectClass);
 
-	const auto contextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	auto contextHandle = GetAbilitySystemComponent()->MakeEffectContext();
 	const auto specHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(gameplayEffectClass, level, contextHandle);
 
+	contextHandle.AddSourceObject(this);
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*specHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
@@ -44,4 +45,5 @@ void ACMCharacterBase::InitializeDefaultAttributes() const
 {
 	ApplyEffectToSelf(defaultPrimaryAttributes);
 	ApplyEffectToSelf(defaultSecondaryAttributes);
+	ApplyEffectToSelf(defaultVitalAttributes);
 }
