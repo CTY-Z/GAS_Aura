@@ -7,10 +7,13 @@
 #include "InputMappingContext.h"
 #include "AuraPlayerController.generated.h"
 
+struct FInputActionValue;
+struct FGameplayTag;
 class UInputMappingContext;
 class UInputAction;
-struct FInputActionValue;
 class IHighlight;
+class UAuraInputConfig;
+class UAuraAbilitySystemComponent;
 
 /**
  * 
@@ -39,7 +42,21 @@ private:
 	TObjectPtr<IHighlight> lastActor;
 	TObjectPtr<IHighlight> curActor;
 
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UAuraInputConfig> m_inputConfig;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Input")
+	TObjectPtr<UAuraAbilitySystemComponent> m_auraAsc;
+
+	void AbilityInputTagPressed(FGameplayTag inputTag);
+	void AbilityInputTagReleased(FGameplayTag inputTag);
+	void AbilityInputTagHeld(FGameplayTag inputTag);
+
 	void Move(const FInputActionValue& inputActionValue);
 
 	void CursorTrace();
+
+	UAuraAbilitySystemComponent* GetAsc();
+
 };

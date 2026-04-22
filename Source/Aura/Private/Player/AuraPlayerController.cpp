@@ -3,9 +3,13 @@
 
 #include "Player/AuraPlayerController.h"
 
+#include <AbilitySystemBlueprintLibrary.h>
+
 #include "EnhancedInputSubsystems.h"
-#include "EnhancedInputComponent.h"
 #include "Interaction/Highlight.h"
+#include "GameplayTagContainer.h"
+#include "Input/AuraInputComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -46,10 +50,34 @@ void AAuraPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	UEnhancedInputComponent* enhanceInputComponent 
-		= CastChecked<UEnhancedInputComponent>(InputComponent);
+	UAuraInputComponent* auraInputComponent 
+		= CastChecked<UAuraInputComponent>(InputComponent);
 
-	enhanceInputComponent->BindAction(m_action_move, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+	auraInputComponent->BindAction(m_action_move, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
+
+	auraInputComponent->BindAbilityAction(m_inputConfig, this,
+		&ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
+}
+
+void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag inputTag)
+{
+	//GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Red, *inputTag.ToString());
+}
+
+void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag inputTag)
+{
+	//GEngine->AddOnScreenDebugMessage(2, 3.f, FColor::Blue, *inputTag.ToString());
+
+	if (GetAsc() == nullptr) return;
+	GetAsc()->AbilityInputTagReleased(inputTag);
+}
+
+void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag inputTag)
+{
+	//GEngine->AddOnScreenDebugMessage(3, 3.f, FColor::Green, *inputTag.ToString());
+
+	if (GetAsc() == nullptr) return;
+	GetAsc()->AbilityInputTagHeld(inputTag);
 }
 
 void AAuraPlayerController::Move(const FInputActionValue& inputActionValue)
@@ -99,4 +127,13 @@ void AAuraPlayerController::CursorTrace()
 			else { }
 		}
 	}
+}
+
+UAuraAbilitySystemComponent* AAuraPlayerController::GetAsc()
+{
+	if (m_auraAsc == nullptr)
+		m_auraAsc = Cast<UAuraAbilitySystemComponent>
+			(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn<APawn>()));
+
+	return m_auraAsc;
 }

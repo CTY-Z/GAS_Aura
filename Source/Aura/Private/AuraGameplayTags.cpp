@@ -87,4 +87,38 @@ void FAuraGameplayTags::InitNativeGameplayTags()
 
 #pragma endregion
 
+#pragma region InputTag
+
+	gameplayTags.InputTag_LMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.LMB"),
+		FString("InputTag for Left Mouse Button")
+	);
+
+	gameplayTags.InputTag_RMB = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.RMB"),
+		FString("InputTag for Right Mouse Button")
+	);
+
+	gameplayTags.InputTag_1 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.1"),
+		FString("InputTag for 1 Key")
+	);
+
+	gameplayTags.InputTag_2 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.2"),
+		FString("InputTag for 2 Key")
+	);
+
+	gameplayTags.InputTag_3 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.3"),
+		FString("InputTag for 3 Key")
+	);
+
+	gameplayTags.InputTag_4 = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("InputTag.4"),
+		FString("InputTag for 4 Key")
+	);
+
+#pragma endregion
+
 }

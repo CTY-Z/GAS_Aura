@@ -4,6 +4,7 @@
 #include "Character/CMCharacterBase.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 ACMCharacterBase::ACMCharacterBase()
 {
@@ -46,4 +47,12 @@ void ACMCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(defaultPrimaryAttributes);
 	ApplyEffectToSelf(defaultSecondaryAttributes);
 	ApplyEffectToSelf(defaultVitalAttributes);
+}
+
+void ACMCharacterBase::AddCharacterAbilities()
+{
+	UAuraAbilitySystemComponent* auraAsc = CastChecked<UAuraAbilitySystemComponent>(asc);
+	if (!HasAuthority()) return;
+
+	auraAsc->AddCharacterAbilities(arr_startupAbility);
 }

@@ -30,6 +30,7 @@ void ACMCharacter::PossessedBy(AController* NewController)
 
 	//Server
 	InitAbilityActorInfo();
+	AddCharacterAbilities();
 }
 
 void ACMCharacter::OnRep_PlayerState()
